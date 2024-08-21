@@ -1,13 +1,13 @@
-package com.example.ollamatest1;
+package com.example.ollamatest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OllamaTest1Application {
+public class OllamaTestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OllamaTest1Application.class, args);
+        SpringApplication.run(OllamaTestApplication.class, args);
     }
 
 }

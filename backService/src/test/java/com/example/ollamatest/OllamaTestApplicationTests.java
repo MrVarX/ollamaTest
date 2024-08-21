@@ -1,10 +1,10 @@
-package com.example.ollamatest1;
+package com.example.ollamatest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OllamaTest1ApplicationTests {
+class OllamaTestApplicationTests {
 
     @Test
     void contextLoads() {

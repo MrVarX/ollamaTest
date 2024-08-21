@@ -1,16 +1,11 @@
-package com.example.ollamatest1.controller;
+package com.example.ollamatest.controller;
 
-import com.example.ollamatest1.common.Completion;
+import com.example.ollamatest.common.Completion;
 import jakarta.annotation.Resource;
-import org.springframework.ai.chat.model.ChatResponse;
-import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/ollama")

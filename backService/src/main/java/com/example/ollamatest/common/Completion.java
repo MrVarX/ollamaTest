@@ -1,18 +1,15 @@
-package com.example.ollamatest1.common;
+package com.example.ollamatest.common;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
-import org.apache.tomcat.util.buf.StringUtils;
 import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
-import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
