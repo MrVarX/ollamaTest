@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Test Page</title>
+	</head>
+	<body>
+		<input type="text" id="inputData">
+		<button onclick="sendRequest()">发送</button>
+		<div id="output"></div>
+		<script>
+			const s = document.getElementById('output'); //获取元素ID
+			
+			function sendRequest(msg) {
+				const inputData = document.getElementById('inputData').value;
+				
+				s.innerText += (inputData + "\n");
+
+				// 发送 POST 请求
+				fetch('http://192.168.99.193:8088/ollama/chatStream', {
+					method: "POST",
+					body: JSON.stringify({
+						"message": inputData
+					}),
+					timeout: 0,
+					dataType: "text/event-stream",
+					headers: {
+						"Content-Type": "application/json"
+					},
+				}).then(response => {
+					// 检查响应是否成功
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					// 返回一个可读流
+					return response.body;
+				}).then(body => {
+					const reader = body.getReader();
+					// 读取数据流
+					function read() {
+						return reader.read().then(({
+							done,
+							value
+						}) => {
+							// 检查是否读取完毕
+							if (done) {
+								console.log('已传输完毕');
+								s.innerText += "\n";
+								return;
+							}
+							// 处理每个数据块
+							// console.log('收到的数据:', value);
+							let data = new TextDecoder().decode(value);
+						    
+							//处理data:字样，格式化流数据
+							s.innerText += data.replace(/data:/g, "").replace(/\n/g, "");;
+
+							// 继续读取下一个数据块
+							read();
+						});
+					}
+					// 开始读取数据流
+					read();
+				}).catch(error => {
+					console.error('Fetch error:', error);
+				});
+			}
+		</script>
+	</body>
+
+</html>
